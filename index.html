@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatApp</title>
+    <link rel="icon" href="https://www.freepnglogos.com/uploads/s-letter-logo-png-2.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(to right, rgb(15, 4, 1), rgb(20, 186, 252));
+            font-family: Segoe UI;
+        }
+
+        .container {
+            background: black;
+            width: 60%;
+            height: 80vh;
+            margin: auto;
+            padding: 10px;
+            overflow-y: auto;
+            border: blanchedalmond 2px solid;
+            border-radius: 10px;
+            transition: all 1s;
+            animation: border 5s infinite;
+        }
+        @keyframes border {
+            0% {
+                border: blanchedalmond 2px solid;
+            }
+            20% {
+                border: rgb(65, 238, 13) 2px solid;
+            }
+            50% {
+                border: rgb(241, 25, 115) 2px solid;
+            }
+            80% {
+                border: rgba(255, 246, 205, 0.801) 2px solid;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            background-color: rgba(15, 121, 121, 0.13);
+            overflow: hidden;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(rgb(16, 180, 230), rgb(235, 135, 4));
+            border-radius: 25px;
+        }
+
+        .right {
+            background-color: rgb(102, 234, 252);
+            text-align: right;
+            padding: 10px;
+            max-width: 60%;
+            width: auto;
+            float: right;
+            clear: both;
+            margin: 5px;
+            border-radius: 15px;
+            margin: 10px;
+        }
+
+        .left {
+            background-color: burlywood;
+            text-align: left;
+            padding: 10px;
+            width: auto;
+            float: left;
+            clear: both;
+            margin: 10px;
+            border-radius: 15px;
+        }
+
+        .center {
+            background-color: rgba(143, 243, 12, 0.849);
+            text-align: center;
+            padding: 10px;
+            width: 50%;
+            margin: 15px auto;
+            clear: both;
+            border-radius: 15px;
+        }
+
+        .form {
+            /* background-color: darkorange; */
+            width: 60%;
+            margin: 4px auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        input[type="input"] {
+            width: 80%;
+            height: auto;
+            /* height: 100%; */
+            padding: 5px;
+            background: none;
+            outline: none;
+            border: rgb(84, 248, 180) 2px solid;
+            border-radius: 10px;
+            font-size: 1em;
+            color: whitesmoke;
+            transition: 0.5s;
+        }
+
+        input[type="submit"] {
+            /* align-self: flex-end; */
+            width: 15%;
+            padding: 5px;
+            background: none;
+            outline: none;
+            color: white;
+            border: 2px rgb(84, 248, 180) solid;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        .heading {
+            /* background-color: thistle; */
+            width: 50%;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 7px;
+            color: white;
+        }
+
+        h3 {
+            font-size: 1rem;
+        }
+
+        input[type="submit"]:hover {
+            padding: 7px;
+        }
+
+        input[type="input"]:hover {
+            border-color: tomato;
+        }
+
+        .msg {
+            transition: 0.5s;
+        }
+
+        .msg:hover {
+            background-color: rgb(216, 253, 81);
+        }
+
+        .sadaf {
+            position: fixed;
+        }
+
+        h1 {
+            position: relative;
+            top: 55px;
+            transform: rotate(90deg);
+            transform-origin: 10% 90%;
+            width: 100%;
+            color: chartreuse;
+            transition: 1.5s;
+            animation: anim 5s infinite;
+            animation-delay: 1s;
+        }
+
+        @media screen and (max-width: 1080px) {
+            .container {
+                width: 70%;
+            }
+
+            .form {
+                width: 70%;
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            .input[type="submit"] {
+                width: 10%;
+            }
+
+            .input[type="input"] {
+                width: 90%;
+            }
+
+            .sadaf {
+                position: fixed;
+                color: burlywood;
+                height: auto;
+            }
+
+            h1 {
+                position: relative;
+                top: 55px;
+                transform: rotate(90deg);
+                transform-origin: 5% 90%;
+                width: 100%;
+                color: chartreuse;
+                font-size: 1.7em;
+            }
+        }
+
+        @keyframes anim {
+            10% {
+                color: mediumslateblue;
+                letter-spacing: 0px;
+            }
+
+            45% {
+                color: mintcream;
+                /* letter-spacing: 0.5px; */
+            }
+
+            75% {
+                color: orange;
+                /* letter-spacing: 0.75px; */
+            }
+
+            90% {
+                color: turquoise;
+                letter-spacing: 0.75px;
+            }
+        }
+
+        #typing {
+            position: fixed;
+            background-color: azure;
+            padding: 5px;
+            max-width: 50%;
+            width: auto;
+            border: blueviolet 2px solid;
+            border-radius: 10px;
+            margin: 5px;
+        }
+        #btns {
+            position: fixed;
+            right: 10px;
+            bottom: 200px;
+            width: auto;
+            display: flex;
+            align-items: center;
+            transform: rotate(90deg);
+            transform-origin: 90% 90%;
+            padding: 3px;
+            background-color: tomato;
+            border: rgb(192, 240, 20) 1px solid;
+            box-shadow:2px 2px 10px rgb(14, 1, 1);
+            border-radius: 5px;
+        }
+        .allbtn {
+            background: none;
+            outline: none;
+            padding: 3px;
+            color: white;
+            cursor: pointer;
+            margin: 7px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            box-shadow:2px 2px 10px rgb(14, 1, 1);
+        }
+        #btn1 {
+            background-color: white;
+            color: black;
+        }
+        #btn2 {
+            background-color: black;
+            color: white;
+        }
+        #btn3 {
+            background: linear-gradient(yellow,white);
+            color: black;
+        }
+        #btn4 {
+            background: linear-gradient(rgb(252, 2, 139) , rgb(247, 8, 40));
+            color: white;
+        }
+        #btn5 {
+            background: linear-gradient(rgb(2, 223, 252) , rgb(15, 2, 4));
+            color: white;
+        }
+        .allbtn:active {
+            transform: rotate(360deg);
+        }
+
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script defer src="client.js"></script> -->
+</head>
+
+<body>
+    <div class="sadaf">
+        <h1>Chat App by Sadaf</h1>
+    </div>
+    <div id ="btns">
+        <span><b>Themes</b></span>
+        <button class="allbtn" id="btn1">Light</button>
+        <button class="allbtn" id="btn2">Dark</button>
+        <button class="allbtn" id="btn3">Yellow</button>
+        <button class="allbtn" id="btn4">Pinkish</button>
+        <button class="allbtn" id="btn5">Skyblue</button>
+    </div>
+    <div class="heading">
+        <img src="https://www.freepnglogos.com/uploads/s-letter-logo-png-2.png" alt="logo" width="50px" height="50px">
+        <h3>Random Chat App</h3>
+    </div>
+    <div class="container" id="container">
+        <!-- <div class="msg right">hello</div>
+        <div class="msg left">not hello</div> -->
+        <div id="typing">
+            <!-- <p>typing</p> -->
+        </div>
+    </div>
+    <form id="form" class="form" autocomplete="off">
+        <input type="input" name="message" placeholder="type your message" id="msg">
+        <input type="submit" name="submit" id="submit" value="Send">
+    </form>
+    <script>
+        const socket = io();
+        let container = document.getElementById('container');
+        let btn1 = document.getElementById("btn1");
+        let btn2 = document.getElementById("btn2");
+        let btn3 = document.getElementById("btn3");
+        let btn4 = document.getElementById("btn4");
+        let btn5 = document.getElementById("btn5");
+        let form = document.getElementById('form');
+        let msg = document.getElementById('msg');
+        btn1.addEventListener("click", (e)=>{
+            e.preventDefault();
+            container.style.background = "white";
+        });
+        btn5.addEventListener("click", (e)=>{
+            e.preventDefault();
+            container.style.background = "linear-gradient(rgb(2, 223, 252) , rgb(15, 2, 4))";
+        });
+        btn2.addEventListener("click", (e)=>{
+            e.preventDefault();
+            container.style.background = "black";
+        });
+        btn3.addEventListener("click", (e)=>{
+            e.preventDefault();
+            container.style.background = "linear-gradient(yellow,white)";
+        });
+        btn4.addEventListener("click", (e)=>{
+            e.preventDefault();
+            container.style.background = "linear-gradient(rgb(252, 2, 139) , rgb(247, 8, 40))";
+        });
+        let userName = prompt('Enter Your Name');
+        while (!userName) {
+            userName = prompt('Enter Your Name');
+        }
+        if (userName !== null) {
+            socket.emit('new-user', userName);
+            socket.on('user-joined', name => {
+                displayData(`${name}: Joined the Chat`, 'center');
+            })
+        }
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let msgValue = msg.value;
+            if (msgValue !== "") {
+                displayData(`You: ${msgValue}`, 'right');
+                socket.emit('receive', msgValue);
+            }
+            msg.value = "";
+        })
+        socket.on('send', data => {
+            displayData(`${data.name}: ${data.message}`, "left");
+        })
+        socket.on('left', data => {
+            displayData(`${data.name}: left the Chat`, "center");
+        })
+        msg.addEventListener('input', () => {
+            socket.emit('input', userName);
+        })
+        socket.on('show', typename => {
+            let typing = document.getElementById('typing');
+            let html = `<div class="typing">
+                           <p>${typename} is typing</p>
+                        </div>`;
+            typing.innerHTML = html;
+            setTimeout(() => {
+                typing.innerHTML = "";
+            }, 1000);
+        })
+
+        let displayData = (message, position) => {
+            const newElement = document.createElement('div');
+            newElement.innerHTML = message;
+            newElement.classList.add('msg');
+            newElement.classList.add(position);
+            container.append(newElement);
+        }
+    </script>
+</body>
+
+</html>
